@@ -6,12 +6,12 @@ module.exports= function(app){
 var connection =mysql.createConnection({
 
   host: 'localhost',
-  port: 3000,
+  port: 3306,
 
   user: 'root',
 
 
-  password: 'DodgeCity41',
+  password: 'root',
   database: 'flight_data_db'
 });
 
