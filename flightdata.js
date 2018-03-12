@@ -1,8 +1,9 @@
 var mysql =require('mysql');
 
 
-module.exports= function(app){
-var connection =mysql.createConnection({
+module.exports={
+
+var connection = mysql.createConnection({
 
   host: 'localhost',
   port: 3306,
@@ -18,13 +19,13 @@ var connection =mysql.createConnection({
   connection.connect(function(err){
     if (err) throw err;
     console.log('connection id '+connection.threadId);
-    Pulldata();
+     Pulldata();
   });
 
 
-var WindsArr = [];
+
 function Pulldata(){
-// var WindsArr = [];
+ var WindsArr = [];
 var queryString = 'SELECT * FROM asitrep';
 
 connection.query(queryString, function(err, rows, fields) {

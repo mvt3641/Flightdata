@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 require("./flightdata.js")(app);
+mysqlLD();
 
 app.get('/',function(req,res){
   res.json(WindArr);
