@@ -24,7 +24,8 @@ app.use(bodyParser.json());
 require("./flightdata.js")(app);
 
 app.get('/',function(req,res){
-  //res.send("test");
+  res.json(WindArr);
+  console.log(WindArr);
   res.sendFile(path.join(__dirname,"index.html"));
 });
 
