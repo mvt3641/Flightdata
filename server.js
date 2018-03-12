@@ -6,6 +6,7 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require("path");
 
 
 // Sets up the Express App
@@ -22,9 +23,13 @@ app.use(bodyParser.json());
 
 require("./flightdata.js")(app);
 
+app.get('/',function(req,res){
+  //res.send("test");
+  res.sendFile(path.join(__dirname,"index.html"));
+});
+
 // Syncing our sequelize models and then starting our express app
   app.listen(PORT, function() {
 
     console.log("App listening on PORT " + PORT);
   });
-  
