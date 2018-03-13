@@ -7,6 +7,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var apiRoutes = require('./controllers/api');
 
 
 // Sets up the Express App
@@ -20,14 +21,11 @@ var PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
+app.use(apiRoutes);
 
-require("./flightdata.js")(app);
+app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.get('/',function(req,res){
-  res.json(WindArr);
-  console.log(WindArr);
-  res.sendFile(path.join(__dirname,"index.html"));
-});
+
 
 // Syncing our sequelize models and then starting our express app
   app.listen(PORT, function() {
