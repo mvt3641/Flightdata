@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $.ajax({
     method:'GET',
-    url:'/api/flightdata/ground'
+    url:'/api/flightdata/chart'
   }).then(function(res){
   graphChart(res);
 //console.log(res);
@@ -11,6 +11,7 @@ $(document).ready(function(){
 
 
 function graphChart(res){
+  var tnArr  =[];
   var grdArr =[];
   var timeArr =[];
   var windArr =[];
@@ -21,11 +22,13 @@ function graphChart(res){
    var date =res[i].Date;
    var grd = res[i].GROUND_;
    var time = res[i].TIME+':00 '+date;
+   var tension =res[i].TENSION;
    // var grdArr =[];
    // var timeArr =[];
    grdArr.push(grd);
    timeArr.push(time);
    windArr.push(winds);
+   tnArr.push(tension);
   // console.log(grdArr);
   // console.log(timeArr);
   //console.log(date);
