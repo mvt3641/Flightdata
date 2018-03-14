@@ -4,6 +4,7 @@ $(document).ready(function(){
     url:'/api/flightdata/chart'
   }).then(function(res){
   graphChart(res);
+  createdatetable(res);
 //console.log(res);
   });
 });
@@ -61,4 +62,19 @@ options: {}
 });
 
   }
+};
+
+
+function createdatetable(res){
+  var datetbl= $("<select multiple id='datetb'>");
+  for (var i=0;i<40;i++){
+    var timeselec= res[i].TIME+':00 '+res[i].Date;
+    var op =$('<option>');
+    console.log(timeselec);
+    op.append(timeselec);
+    datetbl.append(op);
+  }
+
+  $('#createdate').append(datetbl);
+  console.log(timeselec);
 };

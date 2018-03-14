@@ -12,3 +12,13 @@
   top: -240px;
   left: 500px;
 }
+
+.datesearchwin{
+  position: relative;
+top: -350px;
+left: 900px;
+}
+
+#datetb{
+  width:150px;
+}
