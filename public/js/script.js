@@ -11,6 +11,7 @@ $(document).ready(function(){
 
 
 
+
 function graphChart(res){
   var tnArr  =[];
   var grdArr =[];
@@ -69,12 +70,32 @@ function createdatetable(res){
   var datetbl= $("<select multiple id='datetb'>");
   for (var i=0;i<40;i++){
     var timeselec= res[i].TIME+':00 '+res[i].Date;
-    var op =$('<option>');
-    console.log(timeselec);
+    var op =$('<option>').attr("value",timeselec);
+    // console.log(timeselec);
     op.append(timeselec);
     datetbl.append(op);
   }
 
   $('#createdate').append(datetbl);
-  console.log(timeselec);
+  // console.log(timeselec);
 };
+
+
+$('#datesearch').on('click',function(){
+  var range = $('#datetb').find(':selected').val();
+  console.log(range);
+  alert('test');
+})
+
+// function timeSearch(){
+//   var searchArr = [];
+//   // var data = $('#datetb option[value='+objValue+']').attr('selected',true);
+//   $("#datetb").change(function(){
+//     console.log($(this).find(":selected").val());
+//   })
+//   // console.log(data);
+// };
+
+
+
+  // timeSearch();
