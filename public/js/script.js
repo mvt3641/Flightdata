@@ -67,16 +67,19 @@ options: {}
 
 
 function createdatetable(res){
-  var datetbl= $("<select multiple id='datetb'>");
+  var datebegin= $("<select multiple id='datebegin'>");
+  // var datend= $("<select multiple id='datend'>");
   for (var i=0;i<40;i++){
     var timeselec= res[i].TIME+':00 '+res[i].Date;
     var op =$('<option>').attr("value",timeselec);
     // console.log(timeselec);
     op.append(timeselec);
-    datetbl.append(op);
+    datebegin.append(op);
+    // datend.append(op);
   }
 
-  $('#createdate').append(datetbl);
+  $('#createdate').append(datebegin);
+  // $('#createdate').append(datend);
   // console.log(timeselec);
 };
 

@@ -25,7 +25,10 @@ app.use(apiRoutes);
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-
+//////personnal track//////////////////////////////////
+app.get('/pax',function(req,res){
+  res.sendFile(path.join(__dirname, "/public/userinput.html"));
+})
 
 // Syncing our sequelize models and then starting our express app
   app.listen(PORT, function() {

@@ -47,9 +47,20 @@ router.post('/api/flightdata',function(req,res){
  });
 
 
-/// Route for updating mysql table existing items
-// router.put('/')
 
+/////////////////////// PAX TRACKER /////////////////////////////////////////////////////////
+
+router.post('/api/pax', function(req,res){
+  db.query('INSERT INTO paxtracker SET ?', req.body, function(err,results){
+    if(err) throw err;
+    console.log(req.body);
+  //response to client side
+  db.query('SELECT * FROM paxtracker', function(err, results) {
+            if (err) throw err;
+            res.json(results);
+  })
+})
+});
 
 
 

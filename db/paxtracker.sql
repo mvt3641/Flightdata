@@ -1,0 +1,11 @@
+USE flight_data_db;
+
+CREATE TABLE paxtracker (
+id INT AUTO_INCREMENT,
+first VARCHAR(20) NOT NULL,
+last VARCHAR(20) NOT NULL,
+position VARCHAR(20) NOT NULL,
+location VARCHAR(20) NOT NULL,
+employer VARCHAR(20) NOT NULL,
+PRIMARY KEY(id)
+);

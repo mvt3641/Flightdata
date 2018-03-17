@@ -22,3 +22,10 @@ left: 900px;
 #datetb{
   width:150px;
 }
+
+.roster{
+  border: 2px solid black;
+}
+.addednewpax{
+  background-color: green;
+}
