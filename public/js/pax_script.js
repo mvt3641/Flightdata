@@ -57,3 +57,29 @@ $.ajax({
 
   });
 });
+
+
+$("#showRoster").on("click",function(){
+
+
+
+
+
+  $.getJSON({url:'/api/pax'},function(res){
+    for (var i=0;i<res.length;i++){
+        var RostWin = $('<div>');
+        var rosterlist = JSON.stringify(res[i]);
+        RostWin.text(rosterlist);
+        $("#return").append(RostWin);
+
+      console.log(res[i]);
+
+ }
+})
+
+// .then(function(res){
+//   // for (var i=0;i<res.length;i++){
+//   //   console.log(res[i]);
+//   }
+// })
+});

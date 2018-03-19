@@ -63,6 +63,14 @@ router.post('/api/pax', function(req,res){
 });
 
 
+////show the whole roster////
+router.get('/api/pax',function(req,res){
+  db.query('SELECT * FROM paxtracker', function(err, results) {
+            if (err) throw err;
+            res.json(results);
+  })
+})
+
 
 
 
