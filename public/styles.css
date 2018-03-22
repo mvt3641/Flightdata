@@ -29,3 +29,9 @@ left: 900px;
 .addednewpax{
   background-color: green;
 }
+
+#siteinput{
+  position: relative;
+left: 500px;
+top: -350;
+}
