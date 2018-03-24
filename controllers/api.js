@@ -15,10 +15,10 @@ router.get('/api/flightdata',function(req,res){
   })
 });
 
-
+//Api test route//
 //Route for getting ground winds
-router.get('/api/flightdata/ground', function(req,res){
-  db.query('SELECT GROUND_ FROM asitrep;',function(err,results){
+router.get('/api/flightdata/chart', function(req,res){
+  db.query('SELECT GROUND_,TIME,Date,Winds_Aloft,TENSION FROM asitrep;',function(err,results){
     if(err) throw err;
     res.json(results);
   })

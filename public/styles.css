@@ -1,0 +1,14 @@
+.chart-container{
+  border: 2px solid black;
+  text-align: center;
+  position:relative;
+  width: 1000px;
+  height: 800px;
+  left: 350px;
+}
+
+.dropdown{
+  position: relative;
+  top: -240px;
+  left: 500px;
+}
