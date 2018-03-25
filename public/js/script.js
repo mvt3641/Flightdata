@@ -17,7 +17,7 @@ function graphChart(res){
   var grdArr =[];
   var timeArr =[];
   var windArr =[];
- for (var i=72;i<100;i++){
+ for (var i=0;i<400;i++){
    //console.log(res[i].GROUND_);
    //console.log(res[i].TIME);
    var winds =res[i].Winds_Aloft;
@@ -46,7 +46,7 @@ data: {
 labels: timeArr,
 datasets: [{
 label: "Ground Wind Chart",
-backgroundColor: 'rgb(255, 99, 132)',
+backgroundColor: 'rgb(47,160,110)',
 borderColor: 'rgb(70,90,172)',
 data: grdArr,
 },
