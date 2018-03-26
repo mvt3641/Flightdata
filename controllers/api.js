@@ -86,5 +86,13 @@ db.query('INSERT INTO location SET ?', req.body, function(err,results){
 });
 
 
+router.get('/api/site', function(req,res){
+  db.query('SELECT * FROM location', function(err,results){
+    if(err) throw err;
+    res.json(results);
+  })
+});
+
+
 
 module.exports = router;
