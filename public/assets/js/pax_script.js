@@ -51,7 +51,7 @@ $.ajax({
      console.log(Newpax);
      // console.log(Newpax.first);
 
-    $('#return').append(Newwin);
+    $('#return').prepend(Newwin);
 
     // }
 
@@ -68,9 +68,10 @@ $("#showRoster").on("click",function(){
   $.getJSON({url:'/api/pax'},function(res){
     for (var i=0;i<res.length;i++){
         var RostWin = $('<div>');
-        var rosterlist = JSON.stringify(res[i]);
+        var dividier = $('<hr>');
+        var rosterlist = "Name: "+res[i].last+","+res[i].first+"  Position: "+res[i].position+" Location: "+res[i].location+"  Employer: "+res[i].employer;
         RostWin.text(rosterlist);
-        $("#return").append(RostWin);
+        $("#return").append(RostWin).append(dividier);
 
       console.log(res[i]);
 

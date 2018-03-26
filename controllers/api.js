@@ -76,21 +76,4 @@ router.get('/api/pax',function(req,res){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;
