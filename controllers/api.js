@@ -71,8 +71,19 @@ router.get('/api/pax',function(req,res){
   })
 })
 
+/////////SITE ROUTE//////////////////
 
-
+router.post('/api/site',function(req,res){
+db.query('INSERT INTO location SET ?', req.body, function(err,results){
+    if(err) throw err;
+    console.log(req.body);
+    //response to client side
+    db.query('SELECT * FROM location', function(err, results) {
+              if (err) throw err;
+              res.json(results);
+    })
+})
+});
 
 
 
