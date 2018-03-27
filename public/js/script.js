@@ -46,7 +46,7 @@ data: {
 labels: timeArr,
 datasets: [{
 label: "Ground Wind Chart",
-backgroundColor: 'rgb(255, 99, 132)',
+backgroundColor: 'rgb(158,179,238)',
 borderColor: 'rgb(70,90,172)',
 data: grdArr,
 },
