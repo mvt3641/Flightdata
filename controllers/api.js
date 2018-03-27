@@ -63,25 +63,35 @@ router.post('/api/pax', function(req,res){
 });
 
 
+////show the whole roster////
+router.get('/api/pax',function(req,res){
+  db.query('SELECT * FROM paxtracker', function(err, results) {
+            if (err) throw err;
+            res.json(results);
+  })
+})
+
+/////////SITE ROUTE//////////////////
+
+router.post('/api/site',function(req,res){
+db.query('INSERT INTO location SET ?', req.body, function(err,results){
+    if(err) throw err;
+    console.log(req.body);
+    //response to client side
+    db.query('SELECT * FROM location', function(err, results) {
+              if (err) throw err;
+              res.json(results);
+    })
+})
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+router.get('/api/site', function(req,res){
+  db.query('SELECT * FROM location', function(err,results){
+    if(err) throw err;
+    res.json(results);
+  })
+});
 
 
 
