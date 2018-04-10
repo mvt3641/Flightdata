@@ -1,4 +1,16 @@
 $(document).ready(function(){
+
+  $.ajax({
+    method:'GET',
+    url:'/api/flightdata'
+  }).then(function(res){
+    console.log(res)
+    graphChart(res);
+  });
+
+
+
+
   $.ajax({
     method:'GET',
     url:'/api/flightdata/chart'
@@ -17,14 +29,14 @@ function graphChart(res){
   var grdArr =[];
   var timeArr =[];
   var windArr =[];
- for (var i=72;i<172;i++){
+ for (var i=50;i<100;i++){
    //console.log(res[i].GROUND_);
    //console.log(res[i].TIME);
-   var winds =res[i].Winds_Aloft;
-   var date =res[i].Date;
-   var grd = res[i].GROUND_;
-   var time = res[i].TIME+':00 '+date;
-   var tension =res[i].TENSION;
+   var winds =res[i].winds_Aloft;
+   var date =res[i].date;
+   var grd = res[i].ground_Winds;
+   var time = res[i].time+" "+date;
+   var tension =res[i].tension;
    // var grdArr =[];
    // var timeArr =[];
    grdArr.push(grd);
