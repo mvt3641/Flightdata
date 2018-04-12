@@ -10,7 +10,7 @@ var router = express.Router();
 
 //get all data from the mysql table
 router.get('/api/flightdata',function(req,res){
-  flight.find({'date':"2-Jan-16"||"3-Jan-16" },function(err,results){
+  flight.find({'date':"1-Jan-2016"},function(err,results){
     if(err) throw err;
     res.json(results).then(function(){
       console.log(`${results.length}  files returned on query`)
