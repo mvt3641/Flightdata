@@ -10,12 +10,14 @@ var router = express.Router();
 
 //get all data from the mysql table
 router.get('/api/flightdata',function(req,res){
-  flight.find({month:1},function(err,results){
+  //Since this in an uploaded file, sort by _id of upload
+  flight.find().sort({"_id":1}).exec(function(err,results){
     if(err) throw err;
     res.json(results)
       console.log(`${results.length}  files returned on query`)
 
-  })
+  });
+
 });
 
 //Api test route//

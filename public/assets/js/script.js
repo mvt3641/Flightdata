@@ -29,7 +29,7 @@ function graphChart(res){
   var grdArr =[];
   var timeArr =[];
   var windArr =[];
- for (var i=50;i<100;i++){
+ for (var i=0;i<48;i++){
    //console.log(res[i].GROUND_);
    //console.log(res[i].TIME);
    var winds =res[i].winds_Aloft;
