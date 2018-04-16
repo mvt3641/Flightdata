@@ -4,17 +4,17 @@ var mongoose =require('mongoose');
 var flight = require('../models/flightmodel')
 //requring the mongodb database connection
   var db = require('../config/connection');
-
+mongoose.Promise = Promise;
 //creating a router for export to handle middleware and routing
 var router = express.Router();
 
 //get all data from the mysql table
 router.get('/api/flightdata',function(req,res){
-  flight.find({'date':"1-Jan-2016"},function(err,results){
+  flight.find({month:1},function(err,results){
     if(err) throw err;
-    res.json(results).then(function(){
+    res.json(results)
       console.log(`${results.length}  files returned on query`)
-    });
+
   })
 });
 

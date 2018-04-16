@@ -1,4 +1,18 @@
 $(document).ready(function(){
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+
+  $.ajax({
+    method:'GET',
+    url:'/api/flightdata'
+  }).then(function(res){
+    console.log(res)
+    graphChart(res);
+  });
+
+
+
+
   $.ajax({
     method:'GET',
     url:'/api/flightdata/chart'
@@ -17,14 +31,14 @@ function graphChart(res){
   var grdArr =[];
   var timeArr =[];
   var windArr =[];
- for (var i=72;i<172;i++){
+ for (var i=50;i<100;i++){
    //console.log(res[i].GROUND_);
    //console.log(res[i].TIME);
-   var winds =res[i].Winds_Aloft;
-   var date =res[i].Date;
-   var grd = res[i].GROUND_;
-   var time = res[i].TIME+':00 '+date;
-   var tension =res[i].TENSION;
+   var winds =res[i].winds_Aloft;
+   var date =res[i].date;
+   var grd = res[i].ground_Winds;
+   var time = res[i].time+" "+date;
+   var tension =res[i].tension;
    // var grdArr =[];
    // var timeArr =[];
    grdArr.push(grd);
@@ -35,8 +49,8 @@ function graphChart(res){
   // console.log(timeArr);
   //console.log(date);
 
-
-var ctx = document.getElementById('myChart').getContext('2d');
+// Moved chart out of scope
+//var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
 // The type of chart we want to create
 type: 'line',
@@ -89,6 +103,19 @@ $('#datesearch').on('click',function(){
   console.log(range);
   alert('test');
 })
+
+
+
+
+function BarChartgraph(res)
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+});
+
+
+
 
 // function timeSearch(){
 //   var searchArr = [];
