@@ -2,8 +2,8 @@
   border: 2px solid black;
   text-align: center;
   position:relative;
-  width: 1000px;
-  height: 800px;
+  width: 400px;
+  height: 400px;
   left: 350px;
 }
 
@@ -28,4 +28,8 @@ left: 900px;
 }
 .addednewpax.addednewsite{
   background-color: green;
+}
+
+#myChart{
+  float:right;
 }
