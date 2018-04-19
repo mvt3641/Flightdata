@@ -10,11 +10,11 @@ var router = express.Router();
 
 //get all data from the mysql table
 router.post('/flightdata',function(req,res){
-  var searchmon = req.body
+  var searchmon = req.body;
   // var searchdat = req.body.day_srch;
   console.log(searchmon);
   // console.log(searchdat);
-  
+
   //Since this in an uploaded file, sort by _id of upload
   flight.find(searchmon).sort({"_id":1}).exec(function(err,results){
     if(err) throw err;
