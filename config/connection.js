@@ -19,8 +19,8 @@
 
 var mongoose =require('mongoose');
 
-
-mongoose.Promise = Promise;
+mongoose.Promise = global.Promise;
+// mongoose.Promise = Promise;
 var connection = mongoose.connect("mongodb://localhost/flightdata")
 .then(function(){
 console.log("database connected..");

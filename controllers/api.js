@@ -93,8 +93,8 @@ router.post('/api/site', function(req, res) {
 
   //Created new DB in mongo for Site
   var url = "mongodb://localhost:27017/" + Newlocationdb;
-  mongoose.Promise = Promise;
-  mongoose.connect(url, function(err, db, ) {
+
+    mongoose.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Database created for " + Newlocationdb + "!")
 
@@ -102,14 +102,17 @@ router.post('/api/site', function(req, res) {
     db.createCollection("Siteinfo" ,function(err,res){
       if(err) throw err;
       console.log("collection created")
-      })
-      .exec(function(err,res){
-        if (err) throw err;
-        /// Need to insert rest of data to database
-      db.Siteinfo.insert({"test":"passed"});
-      console.log("Site Information added to: "+Newlocationdb);
-    res.json("database created")
+      });
+      db.Siteinfo.insert({"test":"passed"}, function(){
+        console.log("Site Information added to: "+Newlocationdb);
+      res.json("database created");
+
     })
+    });
+
+
+
+
 
 
   //response to client side
@@ -119,7 +122,7 @@ router.post('/api/site', function(req, res) {
   // })
   // })
 });
-});
+
 
 
 router.get('/api/site', function(req, res) {
