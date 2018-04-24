@@ -1,7 +1,8 @@
 //requiring express for routing and server services
 var express = require('express');
 var mongoose = require('mongoose');
-var flight = require('../models/flightmodel')
+var flight = require('../models/flightmodel');
+var siteinfo = require('../models/sitemodel');
 //requring the mongodb database connection
 var db = require('../config/connection');
 mongoose.Promise = Promise;
@@ -85,32 +86,62 @@ router.get('/api/pax', function(req, res) {
 
 /////////SITE ROUTE//////////////////
 
-router.post('/api/site', function(req, res) {
+router.post('/api/site',(req, res) => {
   // db.query('INSERT INTO location SET ?', req.body, function(err,results){
   //     if(err) throw err;
   // console.log(req.body.sitename);
+  var newsite = new siteinfo(req.body);
   var Newlocationdb = req.body.sitename.toLowerCase().replace(/\s/g, '');
-
+  console.log(newsite);
   //Created new DB in mongo for Site
   var url = "mongodb://localhost:27017/" + Newlocationdb;
 
-    mongoose.connect(url, function(err, db) {
+  var dbase =  mongoose.connect(url,(err, db) => {
     if (err) throw err;
-    console.log("Database created for " + Newlocationdb + "!")
+    console.log("Database created for " + Newlocationdb + "!");
+
 
     //Created first collection for Site called Site Info.
-    db.createCollection("Siteinfo" ,function(err,res){
+    db.createCollection("Siteinfo" ,(err,res) => {
       if(err) throw err;
-      console.log("collection created")
-      });
-      db.Siteinfo.insert({"test":"passed"}, function(){
-        console.log("Site Information added to: "+Newlocationdb);
-      res.json("database created");
+      console.log("collection created");
+      db.close();
+    })
+    // dbase.siteinfo.insert({"sitename":req.body.sitename});
+  });
+
+  newsite.update()
+ .then(item => {
+ res.send("item saved to database");
+ console.log("items save to database");
+ })
+ .catch(err => {
+ res.status(400).send("unable to save to database");
+ });
+
+
+  // }).then(err =>{
+  //   if (err) throw err;
+  //   console.log("test");
+  //   res.json("updated");
+  // })
 
     })
-    });
+
+    //   db.siteinfo.insert({req.body}, function(){
+    //     console.log("Site Information added to: "+Newlocationdb);
+    //   res.json("database created");
+    //
+    // })
 
 
+    // .then(item => {
+    //   newsite.save()
+    //     res.send("item saved to database");
+    //     })
+    //     .catch(err => {
+    //       res.status(400).send("unable to save to database");
+    // })
 
 
 
@@ -121,15 +152,15 @@ router.post('/api/site', function(req, res) {
   //           res.json(results);
   // })
   // })
-});
+// });
 
 
 
 router.get('/api/site', function(req, res) {
-  db.query('SELECT * FROM location', function(err, results) {
-    if (err) throw err;
-    res.json(results);
-  })
+  // db.query('SELECT * FROM location', function(err, results) {
+  //   if (err) throw err;
+  //   res.json(results);
+  // })
 });
 
 
