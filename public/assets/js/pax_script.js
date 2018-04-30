@@ -42,7 +42,7 @@ $('#inputform').on('click', function(e) {
   var lastN = $('#lastname').val().trim();
   var positionsel = $('#position').val();
   var positionO = $('#Pother').val().trim();
-  var location = $('#location').val().trim();
+  // var location = $('#location').val().trim();
   var employer = $('#employer').val().trim();
   document.getElementById("userinput").reset();
 
@@ -61,28 +61,31 @@ $('#inputform').on('click', function(e) {
     type: 'POST',
     url: '/api/pax',
     data: JSON.stringify({
-      first: firstN,
-      last: lastN,
-      position: positionsel + ':' + positionO,
-      location: location,
+      firstname: firstN,
+      lastname: lastN,
+      position: positionsel + positionO,
       employer: employer
     }),
     contentType: 'application/json',
     dataType: 'json'
-  }).then(function(res) {
-    // for (var i=0;i<res.length;i++){
-    //   console.log(res[i]);
-    var Newwin = $('<div class="addednewpax">');
-    var Newpax = res.pop();
-    Newwin.text('Name: ' + Newpax.first + '___' + Newpax.last + '********* Position: ' + Newpax.position + '************Location: ' + Newpax.location + '************ Employer: ' + Newpax.employer);
-    console.log(Newpax);
-    // console.log(Newpax.first);
-
-    $('#return').prepend(Newwin);
-
-    // }
-
-  });
+    }).then(function(res){
+      console.log(res);
+    })
+  //  })
+  // .then(function(res) {
+  //   // for (var i=0;i<res.length;i++){
+  //   //   console.log(res[i]);
+  //   var Newwin = $('<div class="addednewpax">');
+  //   var Newpax = res.pop();
+  //   Newwin.text('Name: ' + Newpax.first + '___' + Newpax.last + '********* Position: ' + Newpax.position + '************Location: ' + Newpax.location + '************ Employer: ' + Newpax.employer);
+  //   console.log(Newpax);
+  //   // console.log(Newpax.first);
+  //
+  //   $('#return').prepend(Newwin);
+  //
+  //   // }
+  //
+  // });
 });
 
 

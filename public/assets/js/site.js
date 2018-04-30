@@ -1,11 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function() {
   $('#other').hide()
-$('#system').change(function(){
-  var val = $('#system').val();
-   if(val == "Other"){
-    $('#other').show();
-  }
-})
+  $('#system').change(function() {
+    var val = $('#system').val();
+    if (val == "Other") {
+      $('#other').show();
+    }
+  })
 });
 
 
@@ -19,7 +19,7 @@ $('#system').change(function(){
 //   }
 // };
 
- $('#inputform').on('click',function(e){
+$('#inputform').on('click', function(e) {
 
   e.preventDefault();
   var siteName = $('#sitename').val().trim();
@@ -33,12 +33,18 @@ $('#system').change(function(){
 
 
   $.ajax({
-        type: 'POST',
-        url: '/api/site',
-        data: JSON.stringify({ sitename: siteName, hub: hubName, system: sysTem+':'+systemO, supportingunit: supportUnit}),
-        contentType: 'application/json',
-        dataType: 'json'
-    }).then(function(res){
-      console.log(res);
-    })
+    type: 'POST',
+    url: '/api/site',
+    data: JSON.stringify({
+      sitename: siteName,
+      hub: hubName,
+      system: sysTem + ':' + systemO,
+      supportingunit: supportUnit
+    }),
+    contentType: 'application/json',
+    dataType: 'json'
+  })
+  .then(function(res) {
+    console.log(res);
+  })
 });

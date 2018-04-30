@@ -3,29 +3,33 @@ var express = require('express');
 var mongoose = require('mongoose');
 var flight = require('../models/flightmodel');
 var siteinfo = require('../models/sitemodel');
+var personalinfo = require('../models/paxmodel');
 //requring the mongodb database connection
-var db = require('../config/connection');
+var connection = require('../config/connection');
 mongoose.Promise = Promise;
 //creating a router for export to handle middleware and routing
 var router = express.Router();
 
 //get all data from the mysql table
 router.post('/flightdata', function(req, res) {
-  var searchmon = req.body
-  // var searchdat = req.body.day_srch;
-  console.log(searchmon);
-  // console.log(searchdat);
+  var uri = "mongodb://localhost:27017/flightdata"
+  mongoose.connect(uri, function(error) {
+    var searchmon = req.body;
+    // var searchdat = req.body.day_srch;
+    console.log(searchmon);
+    // console.log(searchdat);
 
-  //Since this in an uploaded file, sort by _id of upload
-  flight.find(searchmon).sort({
-    "_id": 1
-  }).exec(function(err, results) {
-    if (err) throw err;
-    res.json(results)
-    console.log(`${results.length}  files returned on query`)
+    //Since this in an uploaded file, sort by _id of upload
+    flight.find(searchmon).sort({
+      "_id": 1
+    }).exec(function(err, results) {
+      if (err) throw err;
+      res.json(results)
+      console.log(`${results.length}  files returned on query`)
 
-  });
+    });
 
+  })
 });
 
 //Api test route//
@@ -63,16 +67,30 @@ router.post('/api/flightdata', function(req, res) {
 
 /////////////////////// PAX TRACKER /////////////////////////////////////////////////////////
 
-router.post('/api/pax', function(req, res) {
-  db.query('INSERT INTO paxtracker SET ?', req.body, function(err, results) {
-    if (err) throw err;
-    console.log(req.body);
-    //response to client side
-    db.query('SELECT * FROM paxtracker', function(err, results) {
+router.post('/api/pax', (req, res) => {
+  var uri = "mongodb://localhost:27017/roster";
+  //console.log(req.body);
+  var newpax = new personalinfo({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    position: req.body.position,
+    employer: req.body.employer
+  });
+  console.log(newpax);
+  mongoose.connect(uri, (error) => {
+
+    newpax.save((err, personalinfo) => {
       if (err) throw err;
-      res.json(results);
+      console.log(personalinfo.lastname + " " + personalinfo.firstname + " information to record");
     })
   })
+  .then(function() {
+   if (err) throw err;
+   res.json(newpax);
+    // console.log();
+
+  })
+
 });
 
 
@@ -86,72 +104,98 @@ router.get('/api/pax', function(req, res) {
 
 /////////SITE ROUTE//////////////////
 
-router.post('/api/site',(req, res) => {
-  // db.query('INSERT INTO location SET ?', req.body, function(err,results){
-  //     if(err) throw err;
-  // console.log(req.body.sitename);
-  var newsite = new siteinfo(req.body);
+router.post('/api/site', (req, res) => {
+  console.log(req.body.hub);
+  console.log('***********************');
+  console.log(req.body);
+  var newsite = new siteinfo({
+    sitename: req.body.sitename,
+    hub: req.body.hub,
+    system: req.body.system,
+    supportingunit: req.body.supportingunit
+  });
   var Newlocationdb = req.body.sitename.toLowerCase().replace(/\s/g, '');
+  console.log("*******************")
   console.log(newsite);
-  //Created new DB in mongo for Site
+  //  //Created new DB in mongo for Site
   var url = "mongodb://localhost:27017/" + Newlocationdb;
 
-  var dbase =  mongoose.connect(url,(err, db) => {
+  mongoose.connect(url, (err, db) => {
     if (err) throw err;
     console.log("Database created for " + Newlocationdb + "!");
-
-
-    //Created first collection for Site called Site Info.
-    db.createCollection("Siteinfo" ,(err,res) => {
-      if(err) throw err;
-      console.log("collection created");
-      db.close();
+    newsite.save(function(err, siteinfo) {
+      if (err) return console.error(err);
+      console.log(siteinfo.sitename + " Site information to record")
+      // mongoose.disconnect();
     })
-    // dbase.siteinfo.insert({"sitename":req.body.sitename});
-  });
+  }).then(function() {
+    res.json(newsite);
+  })
 
-  newsite.update()
- .then(item => {
- res.send("item saved to database");
- console.log("items save to database");
- })
- .catch(err => {
- res.status(400).send("unable to save to database");
- });
+});
 
+// function connectbase(){
+//
+// }
 
-  // }).then(err =>{
-  //   if (err) throw err;
-  //   console.log("test");
-  //   res.json("updated");
-  // })
+//    //Created first collection for Site called Site Info.
 
-    })
-
-    //   db.siteinfo.insert({req.body}, function(){
-    //     console.log("Site Information added to: "+Newlocationdb);
-    //   res.json("database created");
-    //
-    // })
-
-
-    // .then(item => {
-    //   newsite.save()
-    //     res.send("item saved to database");
-    //     })
-    //     .catch(err => {
-    //       res.status(400).send("unable to save to database");
-    // })
+//  newsite.save(function(err,siteinfo){
+//   if (err) return console.error(err);
+//   console.log(siteinfo.sitename +"save to record")
+// })
+// db.createCollection("Siteinfo" ,(err,res) => {
+//   if(err) throw err;
+//   console.log("collection created");
 
 
 
 
-  //response to client side
-  // db.query('SELECT * FROM location', function(err, results) {
-  //           if (err) throw err;
-  //           res.json(results);
-  // })
-  // })
+//    // dbase.siteinfo.insert({"sitename":req.body.sitename});
+//  });
+
+//  newsite.update()
+// .then(item => {
+// res.send("item saved to database");
+// console.log("items save to database");
+// })
+// .catch(err => {
+// res.status(400).send("unable to save to database");
+// });
+
+
+// .then(err =>{
+//   if (err) throw err;
+//   console.log("test");
+//   res.json("updated");
+// })
+
+
+
+//   db.siteinfo.insert({req.body}, function(){
+//     console.log("Site Information added to: "+Newlocationdb);
+//   res.json("database created");
+//
+// })
+
+
+// .then(item => {
+//   newsite.save()
+//     res.send("item saved to database");
+//     })
+//     .catch(err => {
+//       res.status(400).send("unable to save to database");
+// })
+
+
+
+
+//response to client side
+// db.query('SELECT * FROM location', function(err, results) {
+//           if (err) throw err;
+//           res.json(results);
+// })
+// })
 // });
 
 

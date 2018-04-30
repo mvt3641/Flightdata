@@ -4,7 +4,8 @@
   "description": "",
   "main": "flightdata.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart":"start mongod && sleep 3",
+    "test": "nodemon test.js",
     "start": "nodemon server.js"
   },
   "author": "",
@@ -15,6 +16,7 @@
     "mongoose": "^5.0.14",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
+    "nightmare": "^3.0.1",
     "nodemon": "^1.17.3",
     "path": "^0.12.7",
     "server2": "0.0.1"
