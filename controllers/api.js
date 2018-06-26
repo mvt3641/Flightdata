@@ -84,7 +84,7 @@ router.post('/api/pax', (req, res) => {
       console.log(personalinfo.lastname + " " + personalinfo.firstname + " information to record");
     })
   })
-  .then(function() {
+  .then(function(err, newpax) {
    if (err) throw err;
    res.json(newpax);
     // console.log();
@@ -95,12 +95,12 @@ router.post('/api/pax', (req, res) => {
 
 
 ////show the whole roster////
-router.get('/api/pax', function(req, res) {
-  db.query('SELECT * FROM paxtracker', function(err, results) {
-    if (err) throw err;
-    res.json(results);
-  })
-})
+// router.get('/api/pax', function(req, res) {
+//   db.query('SELECT * FROM paxtracker', function(err, results) {
+//     if (err) throw err;
+//     res.json(results);
+//   })
+// })
 
 /////////SITE ROUTE//////////////////
 
@@ -124,7 +124,7 @@ router.post('/api/site', (req, res) => {
     if (err) throw err;
     console.log("Database created for " + Newlocationdb + "!");
     newsite.save(function(err, siteinfo) {
-      if (err) return console.error(err);
+      // if (err) return console.error(err);
       console.log(siteinfo.sitename + " Site information to record")
       // mongoose.disconnect();
     })
