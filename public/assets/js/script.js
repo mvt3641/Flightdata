@@ -7,7 +7,7 @@ $(document).ready(function() {
     var monthctns = $("#month_srch").val().trim();
     // var EntireRec = $('#search_all');
     // var day_srch =$('#day_srch').val().trim();
-    console.log(monthctns);
+    console.log("month: "+monthctns);
     // console.log(EntireRec);
     // console.log(day_srch);
     $.ajax({
@@ -19,10 +19,11 @@ $(document).ready(function() {
       // contentType: 'application/json',
       // dataType: 'json'
     }).then(function(res) {
-      console.log(res)
+      console.log(res);
       dtgraph(res);
       pieChartgraph(res);
       graphChart(res)
+      Ao(res)
     }).then(function() {
       $('#monthctn').empty();
     });
@@ -30,20 +31,16 @@ $(document).ready(function() {
   });
 
 
-  //   $.ajax({
-  //     method:'GET',
-  //     url:'/api/flightdata/chart'
-  //   }).then(function(res){
-  //   //graphChart(res);
-  //   BarChartgraph(res);
-  // //  createdatetable(res);
-  // //console.log(res);
-  //   });
+/////Build route to search by day//////
+$('#daysrch').on('click', function(e){
+  e.preventDefault();
+
+})
 });
 
 
 
-
+//Graphing chart for winds speed
 function graphChart(res) {
   var tnArr = [];
   var grdArr = [];
@@ -68,7 +65,7 @@ function graphChart(res) {
     //console.log(date);
 
     // Moved chart out of scope
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('windChart').getContext('2d');
     var chart = new Chart(ctx, {
       // The type of chart we want to create
       type: 'line',
@@ -237,7 +234,28 @@ function dtgraph(res) {
 
 };
 
-
+function Ao(res){
+  var fmc =0;
+  var nmc =0;
+  var pmc =0;
+  var totalhr =0;
+  for (var i= 0;i< res.length ;i++){
+    totalhr++
+    switch (res[i].system_ST) {
+    case 'FMC':
+        fmc++;
+        break;
+    case 'NMC':
+        nmc++;
+        break;
+    case 'PMC':
+          pmc++;
+          break;
+  }
+}
+console.log("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
+console.log("Total hours: "+totalhr);
+};
 
 // function timeSearch(){
 //   var searchArr = [];

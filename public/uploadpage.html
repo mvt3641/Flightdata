@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Upload Sitrep</title>
+</head>
+<body>
+	<p>Use the form below to upload a Site Sitrep Datasheet. Click <a href="/template">here</a> for an example template.</p>
+	<form action="/template" method="POST" encType="multipart/form-data">
+		<input type="file" name="file" accept="*.csv" /><br/><br/>
+		<input type="submit" value="Upload Site Data" />
+	</form>
+	<br></br>
+	<h5>After data is uploaded click below to search</h5>
+	<div>
+		<a style='text-align:center;' href="/"><button type="button" id="upl-btn"><p><span></span>Graph data</p></button></a>
+	</div>
+</body>
+</html>

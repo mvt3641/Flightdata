@@ -9,10 +9,16 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var apiRoutes = require('./controllers/api');
 var logger = require("morgan");
+var fileUpload =require('express-fileUpload');
+
 
 // Sets up the Express App
 // =============================================================
 var app = express();
+
+// Initailize file upload
+app.use(fileUpload());
+
 var PORT = process.env.PORT || 8080;
 
 // Sets up the Express app to handle data parsing
@@ -25,14 +31,18 @@ app.use(apiRoutes);
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-//////personnal track//////////////////////////////////
-app.get('/pax',function(req,res){
-  res.sendFile(path.join(__dirname, "/public/userinput.html"));
+app.get('/', (req, res)=>{
+res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
-app.get('/site',function(req, res){
-  res.sendFile(path.join(__dirname, "/public/site.html"));
+app.get('/upload',function(req, res){
+  res.sendFile(path.join(__dirname, "/public/uploadpage.html"));
 });
+var template = require('./db/template.js');
+app.get('/template', template.get);
+// upload template to mongodb
+var upload = require('./db/upload.js');
+app.post('/upload', upload.post);
 
 // Syncing our sequelize models and then starting our express app
   app.listen(PORT, function() {
