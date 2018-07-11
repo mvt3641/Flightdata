@@ -11,7 +11,7 @@ var router = express.Router();
 
 //get all data from the db table
 router.post('/flightdata', function(req, res) {
-  var uri = "mongodb://localhost:27017/flightdata"
+  var uri = "mongodb://localhost:27017/flightdataSPARC"
   mongoose.connect(uri, function(error) {
     var searchmon = req.body;
     // var searchdat = req.body.day_srch;
