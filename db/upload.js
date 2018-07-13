@@ -29,7 +29,7 @@ exports.post = function (req, res) {
 		 // }
 	 // })
 	 .on("end", function(){
-		 flight.create(flightdataTE, function(err, documents) {
+		 flight.create(flightdata, function(err, documents) {
 			if (err) throw err;
 				console.log(flightdata.length + ' files have been successfully uploaded..');
 			res.send(flightdata.length + ' files have been successfully uploaded..');
