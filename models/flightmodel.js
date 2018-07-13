@@ -5,33 +5,19 @@ var mongoose = require('mongoose');
 var flightSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
 
-  month: {
-    type: Number
-  },
+  month: Number,
   hour: {
-    type: Number
+    type: {}
   },
   flight_ST: {
     type: {}
   },
-  tension: {
-    type: Number
-  },
-  winds_Aloft:{
-  type: Number
-  },
-  helium:{
-    type: Number
-  },
-  ballonet: {
-    type: Number
-  },
-  ground_Winds:{
-    type: Number
-  },
-  barometer: {
-    type: Number
-  }
+  tension: Number,
+  winds_Aloft: Number,
+  helium: Number,
+  ballonet: Number,
+  ground_Winds: Number,
+  barometer: Number
 
 });
 
