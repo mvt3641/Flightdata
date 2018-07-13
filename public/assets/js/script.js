@@ -50,9 +50,9 @@ function graphChart(res) {
     //console.log(res[i].GROUND_);
     //console.log(res[i].TIME);
     var winds = res[i].winds_Aloft;
-    var date = res[i].date;
+    // var date = res[i].date;
     var grd = res[i].ground_Winds;
-    var time = res[i].time + " " + date;
+    var time = res[i].hour;
     var tension = res[i].tension;
     // var grdArr =[];
     // var timeArr =[];
