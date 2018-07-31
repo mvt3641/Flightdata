@@ -17,6 +17,7 @@ var flightSchema = mongoose.Schema({
   helium: Number,
   ballonet: Number,
   ground_Winds: Number,
+  ground_Temp: Number,
   barometer: Number
 
 });

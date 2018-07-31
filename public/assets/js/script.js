@@ -7,7 +7,7 @@ $(document).ready(function() {
     var monthctns = $("#month_srch").val().trim();
     // var EntireRec = $('#search_all');
     // var day_srch =$('#day_srch').val().trim();
-    console.log("month: "+monthctns);
+    console.log("month: " + monthctns);
     // console.log(EntireRec);
     // console.log(day_srch);
     $.ajax({
@@ -20,10 +20,11 @@ $(document).ready(function() {
       // dataType: 'json'
     }).then(function(res) {
       console.log(res);
-      dtgraph(res);
+       dtgraph(res);
       pieChartgraph(res);
       graphChart(res)
-      Ao(res)
+       Ao(res)
+      // sortaloft(res)
     }).then(function() {
       $('#monthctn').empty();
     });
@@ -31,115 +32,91 @@ $(document).ready(function() {
   });
 
 
-/////Build route to search by day//////
-$('#daysrch').on('click', function(e){
-  e.preventDefault();
+  /////Build route to search by day//////
+  $('#daysrch').on('click', function(e) {
+    e.preventDefault();
 
-})
+  })
 });
 
-
-
+//////experimental ///////
+function sortaloft(res){
+    for(var i=0;i<res.length;i++){
+      if(res.flight_ST>1){
+        console.log(res[i].ground_Winds);
+      }
+    }
+};
+///////////////////////////////////////////////////////
 //Graphing chart for winds speed
 function graphChart(res) {
   var tnArr = [];
   var grdArr = [];
   var timeArr = [];
   var windArr = [];
-  for (var i = 0; i < 48; i++) {
-    //console.log(res[i].GROUND_);
-    //console.log(res[i].TIME);
-    var winds = res[i].winds_Aloft;
-    // var date = res[i].date;
-    var grd = res[i].ground_Winds;
-    var time = res[i].hour;
-    var tension = res[i].tension;
-    // var grdArr =[];
-    // var timeArr =[];
-    grdArr.push(grd);
-    timeArr.push(time);
-    windArr.push(winds);
-    tnArr.push(tension);
-    // console.log(grdArr);
-    // console.log(timeArr);
-    //console.log(date);
 
-    // Moved chart out of scope
-    var ctx = document.getElementById('windChart').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
 
-      // The data for the dataset
-      data: {
-        labels: timeArr,
-        datasets: [{
-            label: "Ground Wind Chart",
-            backgroundColor: 'rgb(47,160,110)',
-            borderColor: 'rgb(70,90,172)',
-            data: grdArr,
-          },
-          {
-            label: "Winds Aloft",
-            backgroundColor: "#999",
-            borderColor: "skyblue",
-            data: windArr,
-          }
-        ]
-      },
+    for (var i=0; i<400;i++){
+      if(res[i].flight_ST>1){
 
-      // Configuration options go here
-      options: {}
-    });
+      //console.log(res[i].GROUND_);
+      //console.log(res[i].TIME);
+      var winds = res[i].winds_Aloft;
+      // var date = res[i].date;
+      var grd = res[i].ground_Winds;
+      var time = res[i].hour;
+      var tension = res[i].tension;
+      // var grdArr =[];
+      // var timeArr =[];
+      grdArr.push(grd);
+      timeArr.push(time);
+      windArr.push(winds);
+      tnArr.push(tension);
+      // console.log(grdArr);
+      // console.log(timeArr);
+      //console.log(date);
 
+      // Moved chart out of scope
+      var ctx = document.getElementById('windChart').getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for the dataset
+        data: {
+          labels: timeArr,
+          datasets: [{
+              label: "Ground Wind Chart",
+              backgroundColor: 'rgb(47,160,110)',
+              borderColor: 'rgb(70,90,172)',
+              data: grdArr,
+              pointRadius: 0,
+            },
+            {
+              label: "Winds Aloft",
+              backgroundColor: "#999",
+              borderColor: "skyblue",
+              data: windArr,
+              pointRadius: 0,
+            }
+          ]
+        },
+
+        // Configuration options go here
+        options: {
+          repsonsive: true,
+          maintainAspectRatio: false
+
+        }
+      });
+
+    }
   }
+
 };
 
 
-// function createdatetable(res){
-//   var datebegin= $("<select multiple id='datebegin'>");
-//   // var datend= $("<select multiple id='datend'>");
-//   for (var i=0;i<40;i++){
-//     var timeselec= res[i].TIME+':00 '+res[i].Date;
-//     var op =$('<option>').attr("value",timeselec);
-//     // console.log(timeselec);
-//     op.append(timeselec);
-//     datebegin.append(op);
-//     // datend.append(op);
-//   }
-//
-//   $('#createdate').append(datebegin);
-//   // $('#createdate').append(datend);
-//   // console.log(timeselec);
-// };
-//
-//
-// $('#datesearch').on('click',function(){
-//   var range = $('#datetb').find(':selected').val();
-//   console.log(range);
-//   alert('test');
-// })
-//
 
-
-
-// function BarChartgraph(res){
-//   var Aloftcnt =0;
-//   var mooredcnt = 0;
-//   var combArr =[];
-//   for (var i=0;i<744;i++){
-//     if(res[i].flight_ST < 1){
-//     mooredcnt++;
-//    }
-//     if (res[i].flight_ST > 0){
-//       Aloftcnt++;
-//     }
-//   }
-//   console.log(mooredcnt);
-//   console.log(Aloftcnt);
-//   combArr.push(mooredcnt,Aloftcnt);
-//   console.log(combArr);
-// };
 
 //Chart for graphing hours aloft
 function pieChartgraph(res) {
@@ -147,15 +124,19 @@ function pieChartgraph(res) {
   var mooredcnt = 0;
   var combArr = [];
   for (var i = 0; i < res.length; i++) {
-    if (res[i].flight_ST < 1) {
+    if (isNaN(res[i].flight_ST)) {
       mooredcnt++;
-    }
-    if (res[i].flight_ST > 0) {
+    } else if (res[i].flight_ST > 1) {
       Aloftcnt++;
     }
+
   };
   combArr.push(mooredcnt, Aloftcnt);
+  $("#stats").text("moored: "+mooredcnt+"\n"+
+  "Aloft " + Aloftcnt);
 
+  console.log("moored: " + mooredcnt);
+  console.log("Aloft " + Aloftcnt);
   new Chart(document.getElementById("barChart"), {
     type: 'pie',
     data: {
@@ -172,7 +153,7 @@ function pieChartgraph(res) {
       },
       title: {
         display: true,
-        text: "Flight time breakdown by month"
+        text: "Flight time breakdown since December 2017"
       }
     }
   });
@@ -234,27 +215,27 @@ function dtgraph(res) {
 
 };
 
-function Ao(res){
-  var fmc =0;
-  var nmc =0;
-  var pmc =0;
-  var totalhr =0;
-  for (var i= 0;i< res.length ;i++){
+function Ao(res) {
+  var fmc = 0;
+  var nmc = 0;
+  var pmc = 0;
+  var totalhr = 0;
+  for (var i = 0; i < res.length; i++) {
     totalhr++
     switch (res[i].system_ST) {
-    case 'FMC':
+      case 'FMC':
         fmc++;
         break;
-    case 'NMC':
+      case 'NMC':
         nmc++;
         break;
-    case 'PMC':
-          pmc++;
-          break;
+      case 'PMC':
+        pmc++;
+        break;
+    }
   }
-}
-console.log("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
-console.log("Total hours: "+totalhr);
+  console.log("FMC: " + fmc + " NMC: " + nmc + " PMC: " + pmc);
+  console.log("Total hours: " + totalhr);
 };
 
 // function timeSearch(){

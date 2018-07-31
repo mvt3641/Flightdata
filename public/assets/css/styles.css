@@ -1,11 +1,13 @@
-.chart-container{
+.piechart-container{
   border: 2px solid black;
   text-align: center;
-  position:relative;
-  width: 400px;
-  height: 400px;
-  left: 350px;
-}
+position: relative;
+width: 400px;
+height: 400px;
+/* right: 409px;
+} */
+
+
 
 .dropdown{
   position: relative;
@@ -38,7 +40,9 @@ left: 900px;
 
 }
 
-#windChart {
+.WindChart {
+width: 800px;
+height: 300px;
 
 }
 
