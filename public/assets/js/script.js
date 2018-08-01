@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-//click event to seach by year///
+////////////click event to seach by year///////////
 $("#search_all").on('click', function(e) {
   e.preventDefault();
   // var monthctns = $("#month_srch").val().trim();
@@ -29,9 +29,9 @@ $("#search_all").on('click', function(e) {
     $('#monthctn').empty();
 
 });
+});
 
-
-///Seach by month/////
+/////////////Seach by month//////////////
 $('#monthsrch').on('click', function(e) {
     e.preventDefault();
     var monthctns = $("#month_srch").val().trim();
@@ -44,24 +44,19 @@ $('#monthsrch').on('click', function(e) {
       data: {
         month: monthctns
       },
-      // contentType: 'application/json',
-      // dataType: 'json'
     }).then(function(res) {
       console.log(res)
       dtgraph(res);
       pieChartgraph(res);
-      graphChart(res)
+      graphChart(res);
+      Ao(res)
     }).then(function() {
       $('#monthctn').empty();
     })
+})
 });
-
 /////Build route to search by day//////
-// $('#daysrch').on('click', function(e){
-//   e.preventDefault();
-//
-// })
-});
+
 
 
 
@@ -280,6 +275,7 @@ function Ao(res){
 }
 console.log("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
 console.log("Total hours: "+totalhr);
+ $("#statdiv").html("Total hours: "+totalhr)
 };
 
 // function timeSearch(){
