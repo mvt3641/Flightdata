@@ -1,13 +1,41 @@
 $(document).ready(function() {
 
 
+//click event to seach by year///
+$("#search_all").on('click', function(e) {
+  e.preventDefault();
+  // var monthctns = $("#month_srch").val().trim();
+  // // var EntireRec = $('#search_all');
+  // // var day_srch =$('#day_srch').val().trim();
+  // console.log("month: "+monthctns);
+  // console.log(EntireRec);
+  // console.log(day_srch);
+  $.ajax({
+    method: 'POST',
+    url: '/flightdata',
+    data: {
+      // month: monthctns
+    },
+    // contentType: 'application/json',
+    // dataType: 'json'
+  })
+  .then(function(res) {
+    console.log(res);
+    dtgraph(res);
+    pieChartgraph(res);
+    graphChart(res)
+    Ao(res)
+  }).then(function() {
+    $('#monthctn').empty();
 
-  $('#monthsrch').on('click', function(e) {
+});
+
+
+///Seach by month/////
+$('#monthsrch').on('click', function(e) {
     e.preventDefault();
     var monthctns = $("#month_srch").val().trim();
-    // var EntireRec = $('#search_all');
-    // var day_srch =$('#day_srch').val().trim();
-    console.log("month: "+monthctns);
+    console.log(monthctns);
     // console.log(EntireRec);
     // console.log(day_srch);
     $.ajax({
@@ -19,23 +47,20 @@ $(document).ready(function() {
       // contentType: 'application/json',
       // dataType: 'json'
     }).then(function(res) {
-      console.log(res);
+      console.log(res)
       dtgraph(res);
       pieChartgraph(res);
       graphChart(res)
-      Ao(res)
     }).then(function() {
       $('#monthctn').empty();
-    });
-
-  });
-
+    })
+});
 
 /////Build route to search by day//////
-$('#daysrch').on('click', function(e){
-  e.preventDefault();
-
-})
+// $('#daysrch').on('click', function(e){
+//   e.preventDefault();
+//
+// })
 });
 
 
