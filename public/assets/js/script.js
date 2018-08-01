@@ -275,7 +275,7 @@ function Ao(res){
 }
 console.log("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
 console.log("Total hours: "+totalhr);
- $("#statdiv").html("Total hours: "+totalhr)
+ $("#stats").text("Total hours: "+totalhr "\n").text("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc)
 };
 
 // function timeSearch(){
