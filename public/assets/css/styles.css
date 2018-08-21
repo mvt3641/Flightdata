@@ -30,6 +30,10 @@ left: 900px;
   background-color: green;
 }
 
+.statsblk{
+  color: dimgrey;
+}
+
 /* #myChart{
   float:right;
 } */

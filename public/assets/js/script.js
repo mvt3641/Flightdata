@@ -116,51 +116,6 @@ function graphChart(res) {
 };
 
 
-// function createdatetable(res){
-//   var datebegin= $("<select multiple id='datebegin'>");
-//   // var datend= $("<select multiple id='datend'>");
-//   for (var i=0;i<40;i++){
-//     var timeselec= res[i].TIME+':00 '+res[i].Date;
-//     var op =$('<option>').attr("value",timeselec);
-//     // console.log(timeselec);
-//     op.append(timeselec);
-//     datebegin.append(op);
-//     // datend.append(op);
-//   }
-//
-//   $('#createdate').append(datebegin);
-//   // $('#createdate').append(datend);
-//   // console.log(timeselec);
-// };
-//
-//
-// $('#datesearch').on('click',function(){
-//   var range = $('#datetb').find(':selected').val();
-//   console.log(range);
-//   alert('test');
-// })
-//
-
-
-
-// function BarChartgraph(res){
-//   var Aloftcnt =0;
-//   var mooredcnt = 0;
-//   var combArr =[];
-//   for (var i=0;i<744;i++){
-//     if(res[i].flight_ST < 1){
-//     mooredcnt++;
-//    }
-//     if (res[i].flight_ST > 0){
-//       Aloftcnt++;
-//     }
-//   }
-//   console.log(mooredcnt);
-//   console.log(Aloftcnt);
-//   combArr.push(mooredcnt,Aloftcnt);
-//   console.log(combArr);
-// };
-
 //Chart for graphing hours aloft
 function pieChartgraph(res) {
   var Aloftcnt = 0;
@@ -175,6 +130,7 @@ function pieChartgraph(res) {
     }
   };
   combArr.push(mooredcnt, Aloftcnt);
+  $("#operation").text("Moored hrs: "+mooredcnt+"  Aloft hrs: "+Aloftcnt)
 
   new Chart(document.getElementById("barChart"), {
     type: 'pie',
@@ -228,11 +184,12 @@ function dtgraph(res) {
   }
   combArr.push(wxCount, smCount, umCount, bdCount, Aloft);
   console.log(combArr);
+  $("#flightBrkdwn").text("Weather: "+wxCount+"\n"+" Scheduled Maintenance: "+smCount+"\n"+" Unscheduled Maintenance: "+umCount+"\n"+" Battle Damage: "+bdCount+"\n"+" Aloft: "+Aloft);
 
   new Chart(document.getElementById("RadarChart"), {
     type: 'radar',
     data: {
-      labels: ["Weather", "Scheduled Maintence", "Unscheduled Maintence", "Battle Damage", 'Aloft'],
+      labels: ["Weather", "Scheduled Maintenance", "Unscheduled Maintenence", "Battle Damage", 'Aloft'],
       datasets: [{
         label: "Recored flight Status or Reason Moored",
         fill: true,
@@ -275,7 +232,8 @@ function Ao(res){
 }
 console.log("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
 console.log("Total hours: "+totalhr);
- $("#stats").text("Total hours: "+totalhr "\n").text("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc)
+ $("#stats").text("Total hours: "+totalhr);
+ $("#breakdwn").text("FMC: "+fmc+" NMC: "+nmc+" PMC: "+pmc);
 };
 
 // function timeSearch(){
