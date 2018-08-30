@@ -1,10 +1,15 @@
-.chart-container{
-  border: 2px solid black;
-  text-align: center;
-  position:relative;
-  width: 400px;
-  height: 400px;
-  left: 350px;
+.chart-container {
+    /* border: 2px solid black; */
+    /* display: inline; */
+    /* width: 1500px; */
+}
+
+.chart-canvas {
+float:left;
+/* display: inline; */
+height: 33%;
+ width: 33%;
+border: 2px solid black;
 }
 
 .dropdown{

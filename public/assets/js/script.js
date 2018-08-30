@@ -109,7 +109,10 @@ function graphChart(res) {
       },
 
       // Configuration options go here
-      options: {}
+      options: {
+         maintainAspectRatio: false,
+         responsive: false,
+      }
     });
 
   }
@@ -142,7 +145,8 @@ function pieChartgraph(res) {
         data: combArr
       }]
     },
-    options: {
+    options: { maintainAspectRatio: false,
+      responsive: false,
       legend: {
         display: true
       },
@@ -200,7 +204,8 @@ function dtgraph(res) {
         data: combArr
       }]
     },
-    options: {
+    options: { maintainAspectRatio: false,
+      responsive: false,
       title: {
         display: true,
         text: 'Flight Status'
