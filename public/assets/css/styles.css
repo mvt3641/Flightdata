@@ -1,16 +1,28 @@
-.chart-container {
-    /* border: 2px solid black; */
-    /* display: inline; */
-    /* width: 1500px; */
+.chart-container{
+  width: 1069px;
+  height: 434px;
 }
 
 .chart-canvas {
 float:left;
-/* display: inline; */
-height: 33%;
- width: 33%;
+width: 356px;
+height: 144px;
 border: 2px solid black;
 }
+
+.zoom {
+    /* padding: 50px; */
+    background-color: grey;
+    transition: transform .2s; /* Animation */
+    /* width: 100%;
+    height: 100%; */
+    /* margin: 0 auto; */
+}
+
+.zoom:hover {
+    transform: scale(2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 
 .dropdown{
   position: relative;
