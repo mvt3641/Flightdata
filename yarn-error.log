@@ -20,16 +20,36 @@ npm manifest:
     "description": "",
     "main": "flightdata.js",
     "scripts": {
+<<<<<<< HEAD
       "test": "echo \"Error: no test specified\" && exit 1",
       "start": "node server.js"
+=======
+      "prestart": "start mongod && sleep 3",
+      "test": "nodemon test.js",
+      "start": "nodemon server.js"
+>>>>>>> 59c7be0a1b50c4d4e69a229bec0ec66f23d37780
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
       "body-parser": "^1.18.2",
       "express": "^4.16.2",
+<<<<<<< HEAD
       "mysql": "^2.15.0",
       "path": "^0.12.7"
+=======
+      "express-fileupload": "^0.4.0",
+      "fast-csv": "^2.4.1",
+      "file-system": "^2.2.2",
+      "json2csv": "^3.11.1",
+      "mongojs": "^2.5.0",
+      "mongoose": "^5.0.14",
+      "morgan": "^1.9.0",
+      "nightmare": "^3.0.1",
+      "nodemon": "^1.17.3",
+      "path": "^0.12.7",
+      "server2": "0.0.1"
+>>>>>>> 59c7be0a1b50c4d4e69a229bec0ec66f23d37780
     }
   }
 
@@ -41,9 +61,15 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
+<<<<<<< HEAD
   Exit code: 1
   Command: C:\Windows\system32\cmd.exe
   Arguments: /d /s /c node server.js
+=======
+  Exit code: 3221225786
+  Command: C:\Windows\system32\cmd.exe
+  Arguments: /d /s /c nodemon server.js
+>>>>>>> 59c7be0a1b50c4d4e69a229bec0ec66f23d37780
   Directory: C:\Users\TaSM Image\Desktop\Flightdata
   Output:
   

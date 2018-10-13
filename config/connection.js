@@ -1,20 +1,14 @@
-var mysql=require('mysql');
 
-var connection =mysql.createConnection({
 
-  host: 'localhost',
-  port: 3000,
+var mongoose =require('mongoose');
 
-  user: 'root',
-  password: 'DodgeCity41',
-  database: 'flight_data_db'
+mongoose.Promise = global.Promise;
+var dbc;
+// mongoose.Promise = Promise;
+var connection = mongoose.connect("mongodb://localhost/")
+.then(function(){
+console.log("database connected..");
 });
 
-
-  connection.connect(function(err){
-    if (err) throw err;
-    console.log('connection id '+connection.threadId);
-
-  });
 
   module.exports = connection;

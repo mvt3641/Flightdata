@@ -4,41 +4,80 @@
 <head>
   <title>Test Chart</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 </head>
 
 <body>
-<h1 style="text-align:center;">Test Chart</h1>
+  <h1 style="text-align:center;">Test Chart</h1>
 
 
+  <div>
+    <a style='text-align:center;' href="/upload"><button type="button" id="upl-btn"><p><span></span>upload sitrep</p></button></a>
+  </div>
 
-<div class="chart-container">
-<canvas id="myChart"></canvas>
-</div>
+  <p>Choose a search Query</p>
+  <form>
 
-<div class="dropdown">
+    <input type="text" name="month" id="month_srch" placeholder="1-12">
+    <button id="monthsrch">Search Month</button><br>
+    <input type="text" name="Day" id="day_srch" placeholder="Format: 29-Oct-2016">
+    <button id="daysrch">Search Date</button><br>
+    <button id="search_all">Search Entire Record</button>
+  </form>
+  <div>
+    <h2 class="statsblk"><u>Total Hours</u></h4>
+    <p id="stats"></p>
+    <h2 class="statsblk"><u>AO</u></h4>
+    <p id="operation"></p>
+    <h2 class="statsblk"><u>System Functional Status</u></h4>
+    <p id="breakdwn"></p>
+    <h2 class="statsblk"><u>Flight Hours Breakdown</u></h4>
+    <p id="flightBrkdwn"></p>
+  </div>
+    <!-- <div class="chart-container">
+
+      <canvas id="barChart" class="chart-canvas"></canvas>
+      <canvas id="windChart" class="chart-canvas"></canvas>
+      <canvas id="RadarChart" class="chart-canvas"></canvas>
 
 
-<h1>Select graph</h1>
+    </div> -->
+<!--Test window-->
+        <div class="chart-container middle">
+
+                <canvas id="barChart" class="chart-canvas zoom inner"></canvas>
+                <canvas id="windChart" class="chart-canvas zoom inner"></canvas>
+                <canvas id="RadarChart" class="chart-canvas zoom inner"></canvas>
+      </div>
+
+    <!-- <div class="dropdown">
+
+
+<h3>Select graph</h3>
 <select multiple>
   <option id='Awinds' value="Awinds">Winds Aloft</option>
   <option id= 'grdwinds' value="grdwinds">Ground Winds</option>
-  <option id="tension" value="tension">Tether Tensionl</option>
-  <!-- <option value="audi">Audi</option> -->
+  <option id="tension" value="tension">Tether Tension</option>
 </select>
 </div>
 
+<div id="createdate" class="datesearchwin">
+
+<button type='button' id="datesearch">search</button>
+</div> -->
 
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script> -->
-  <!-- Load d3.js and c3.js -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-  <script src="/js/script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script> -->
+    <!-- Load d3.js and c3.js -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="/assets/js/script.js" defer></script>
+
 
 
 
