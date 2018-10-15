@@ -35,7 +35,7 @@ app.get('/', (req, res)=>{
 res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
-app.get('/upload',function(req, res){
+app.get('/upload', (req, res)=>{
   res.sendFile(path.join(__dirname, "/public/uploadpage.html"));
 });
 var template = require('./db/template.js');
