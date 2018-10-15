@@ -29,14 +29,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(apiRoutes);
 
-app.use('/', express.static(path.join(__dirname, 'docs')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res)=>{
-res.sendFile(path.join(__dirname, "/docs/index.html"));
+res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get('/upload',function(req, res){
-  res.sendFile(path.join(__dirname, "/docs/uploadpage.html"));
+  res.sendFile(path.join(__dirname, "uploadpage.html"));
 });
 var template = require('./db/template.js');
 app.get('/template', template.get);
