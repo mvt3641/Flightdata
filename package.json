@@ -4,7 +4,7 @@
   "description": "",
   "main": "flightdata.js",
   "scripts": {
-    "prestart": "start mongod && sleep 3",
+
     "test": "nodemon test.js",
     "start": "nodemon server.js"
   },
