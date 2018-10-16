@@ -5,8 +5,10 @@
 
 .chart-canvas {
 float:left;
-width: 356px;
-height: 144px;
+/* width: 356px; */
+width: 600px;
+/* height: 144px; */
+height: 250px;
 border: 2px solid black;
 }
 
