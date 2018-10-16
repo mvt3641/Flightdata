@@ -9,7 +9,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var apiRoutes = require('./controllers/api');
 var logger = require("morgan");
-var fileUpload =require('express-fileUpload');
+var fileUpload =require('express-fileupload');
 
 
 // Sets up the Express App
