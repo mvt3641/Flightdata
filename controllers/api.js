@@ -11,13 +11,12 @@ var router = express.Router();
 
 //get all data from the db table
 router.post('/flightdata', function(req, res) {
-  var uri = "mongodb://localhost:27017/flightdata"
+  var uri = "mongodb://localhost:27017/flightdata";
   mongoose.connect(uri, function(error) {
     var searchmon = req.body;
     // var searchdat = req.body.day_srch;
     console.log(searchmon);
     // console.log(searchdat);
-
     //Since this in an uploaded file, sort by _id of upload
     flight.find(searchmon).sort({
       "_id": 1
@@ -27,9 +26,25 @@ router.post('/flightdata', function(req, res) {
       console.log(`${results.length}  files returned on query`)
 
     });
-
   })
 });
+
+
+router.post("/createcollection", function(req, res) {
+  var uri = "mongodb://localhost:27017/flightdata";
+  var Name_C = req.body.collection_Name;
+  console.log(Name_C);
+  mongoose.connect(uri, function(err, db) {
+  if (err) throw err;
+  db.createCollection(Name_C, function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    });
+  });
+});
+
+
+
 
 //Api test route//
 //Route for getting ground winds

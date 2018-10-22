@@ -2,34 +2,21 @@ $(document).ready(function() {
 
 
 ////////////click event to seach by year///////////
-$("#search_all").on('click', function(e) {
+$("#new_collection").on('click', function(e) {
   e.preventDefault();
-  // var monthctns = $("#month_srch").val().trim();
-  // // var EntireRec = $('#search_all');
-  // // var day_srch =$('#day_srch').val().trim();
-  // console.log("month: "+monthctns);
-  // console.log(EntireRec);
-  // console.log(day_srch);
+      var collection_Name = $("#collec_nme").val();
+      console.log(collection_Name);
   $.ajax({
     method: 'POST',
-    url: '/flightdata',
+    url: '/createcollection',
     data: {
-      // month: monthctns
-    },
-    // contentType: 'application/json',
-    // dataType: 'json'
-  })
-  .then(function(res) {
-    console.log(res);
-    dtgraph(res);
-    pieChartgraph(res);
-    graphChart(res)
-    Ao(res)
-  }).then(function() {
-    $('#monthctn').empty();
+       collection_Name
+    }
+  });
 
 });
 });
+
 
 /////////////Seach by month//////////////
 $('#monthsrch').on('click', function(e) {
@@ -53,7 +40,6 @@ $('#monthsrch').on('click', function(e) {
     }).then(function() {
       $('#monthctn').empty();
     })
-})
 });
 /////Build route to search by day//////
 
