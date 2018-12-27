@@ -20,11 +20,16 @@ $("#search_all").on('click', function(e) {
     // dataType: 'json'
   })
   .then(function(res) {
-    console.log(res);
-    dtgraph(res);
+    var barChart =$("#barChart");
+    var radarChart =$("#RadarChart");
+    var pieChart =$("#PieChart");
     pieChartgraph(res);
-    graphChart(res)
-    Ao(res)
+    barChart.click(graphChart(res));
+    console.log(res);
+    // dtgraph(res);
+    // pieChartgraph(res);
+    // graphChart(res)
+    // Ao(res)
   }).then(function() {
     $('#monthctn').empty();
 
@@ -46,9 +51,18 @@ $('#monthsrch').on('click', function(e) {
       },
     }).then(function(res) {
       console.log(res)
-      dtgraph(res);
+      // var barChart =$("#barChart");
+      // var radarChart =$("#RadarChart");
+      // var pieChart =$("#PieChart");
       pieChartgraph(res);
-      graphChart(res);
+      // barChart.onclick = function(){
+        // alert("test");
+      // }
+
+
+      // dtgraph(res);
+      // pieChartgraph(res);
+      // graphChart(res);
       Ao(res)
     }).then(function() {
       $('#monthctn').empty();
@@ -85,7 +99,7 @@ function graphChart(res) {
     //console.log(date);
 
     // Moved chart out of scope
-    var ctx = document.getElementById('windChart').getContext('2d');
+    var ctx = document.getElementById('DisplayChart').getContext('2d');
     var chart = new Chart(ctx, {
       // The type of chart we want to create
       type: 'line',
@@ -135,7 +149,7 @@ function pieChartgraph(res) {
   combArr.push(mooredcnt, Aloftcnt);
   $("#operation").text("Moored hrs: "+mooredcnt+"  Aloft hrs: "+Aloftcnt)
 
-  new Chart(document.getElementById("barChart"), {
+  new Chart(document.getElementById("DisplayChart"), {
     type: 'pie',
     data: {
       labels: ["Moored", "Aloft"],
@@ -190,7 +204,7 @@ function dtgraph(res) {
   console.log(combArr);
   $("#flightBrkdwn").text("Weather: "+wxCount+"\n"+" Scheduled Maintenance: "+smCount+"\n"+" Unscheduled Maintenance: "+umCount+"\n"+" Battle Damage: "+bdCount+"\n"+" Aloft: "+Aloft);
 
-  new Chart(document.getElementById("RadarChart"), {
+  new Chart(document.getElementById("DisplayChart"), {
     type: 'radar',
     data: {
       labels: ["Weather", "Scheduled Maintenance", "Unscheduled Maintenence", "Battle Damage", 'Aloft'],
