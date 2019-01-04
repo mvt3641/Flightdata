@@ -2,39 +2,39 @@ $(document).ready(function() {
 
 
 ////////////click event to seach by year///////////
-$("#search_all").on('click', function(e) {
-  e.preventDefault();
-  // var monthctns = $("#month_srch").val().trim();
-  // // var EntireRec = $('#search_all');
-  // // var day_srch =$('#day_srch').val().trim();
-  // console.log("month: "+monthctns);
-  // console.log(EntireRec);
-  // console.log(day_srch);
-  $.ajax({
-    method: 'POST',
-    url: '/flightdata',
-    data: {
-      // month: monthctns
-    },
-    // contentType: 'application/json',
-    // dataType: 'json'
-  })
-  .then(function(res) {
-    var barChart =$("#barChart");
-    var radarChart =$("#RadarChart");
-    var pieChart =$("#PieChart");
-    pieChartgraph(res);
-    barChart.click(graphChart(res));
-    console.log(res);
-    // dtgraph(res);
-    // pieChartgraph(res);
-    // graphChart(res)
-    // Ao(res)
-  }).then(function() {
-    $('#monthctn').empty();
-
-});
-});
+// $("#search_all").on('click', function(e) {
+//   e.preventDefault();
+//   // var monthctns = $("#month_srch").val().trim();
+//   // // var EntireRec = $('#search_all');
+//   // // var day_srch =$('#day_srch').val().trim();
+//   // console.log("month: "+monthctns);
+//   // console.log(EntireRec);
+//   // console.log(day_srch);
+//   $.ajax({
+//     method: 'POST',
+//     url: '/flightdata',
+//     data: {
+//       // month: monthctns
+//     },
+//     // contentType: 'application/json',
+//     // dataType: 'json'
+//   })
+//   .then(function(res) {
+//     var barChart =$("#barChart");
+//     var radarChart =$("#RadarChart");
+//     var pieChart =$("#PieChart");
+//     pieChartgraph(res);
+//     barChart.click(graphChart(res));
+//     console.log(res);
+//     // dtgraph(res);
+//     // pieChartgraph(res);
+//     // graphChart(res)
+//     // Ao(res)
+//   }).then(function() {
+//     $('#monthctn').empty();
+//
+// });
+// });
 
 /////////////Seach by month//////////////
 $('#monthsrch').on('click', function(e) {
@@ -50,21 +50,25 @@ $('#monthsrch').on('click', function(e) {
         month: monthctns
       },
     }).then(function(res) {
-      console.log(res)
-      // var barChart =$("#barChart");
-      // var radarChart =$("#RadarChart");
-      // var pieChart =$("#PieChart");
+      console.log(res);
       pieChartgraph(res);
-      // barChart.onclick = function(){
-        // alert("test");
-      // }
 
+      $("#barChart").on('click', function() {
+         graphChart(res);
+      });
+
+      $("#RadarChart").on('click', function() {
+         dtgraph(res);
+      });
+      $("#PieChart").on('click', function() {
+         pieChartgraph(res);
+      });
 
       // dtgraph(res);
       // pieChartgraph(res);
       // graphChart(res);
       Ao(res)
-    }).then(function() {
+    }).then(function(){
       $('#monthctn').empty();
     })
 })
