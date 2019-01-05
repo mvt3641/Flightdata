@@ -80,7 +80,7 @@ $('#monthsrch').on('click', function(e) {
 /////erasing canvas to reset/////
 function resetCanvas(){
   $('#DisplayChart').remove(); // this is my <canvas> element
-  $('#canvashld').append('<canvas id="DisplayChart"><canvas>');
+  $('#canvashld').append('<canvas id="DisplayChart" width="500px height="500px"><canvas>');
 };
 
 
@@ -92,7 +92,8 @@ function graphChart(res) {
   var grdArr = [];
   var timeArr = [];
   var windArr = [];
-  for (var i = 0; i < 48; i++) {
+  var tnArr =[];
+  for (var i = 0; i < 24; i++) {
     //console.log(res[i].GROUND_);
     //console.log(res[i].TIME);
     var winds = res[i].winds_Aloft;
@@ -106,7 +107,7 @@ function graphChart(res) {
     timeArr.push(time);
     windArr.push(winds);
     tnArr.push(tension);
-    // console.log(grdArr);
+    // console.log(tnArr);
     // console.log(timeArr);
     //console.log(date);
 
@@ -130,6 +131,13 @@ function graphChart(res) {
             backgroundColor: "#999",
             borderColor: "skyblue",
             data: windArr,
+          },
+          {
+            label: "Tether Tension",
+            backgroundColor: "#999",
+            borderColor: "green",
+            data: tnArr,
+
           }
         ]
       },
@@ -142,6 +150,7 @@ function graphChart(res) {
     });
 
   }
+  console.log(tnArr);
 };
 
 
