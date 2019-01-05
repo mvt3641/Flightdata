@@ -51,17 +51,21 @@ $('#monthsrch').on('click', function(e) {
       },
     }).then(function(res) {
       console.log(res);
-      pieChartgraph(res);
+      graphChart(res);
 
       $("#barChart").on('click', function() {
-         graphChart(res);
-      });
+          resetCanvas();
+          pieChartgraph(res);
+
+    });
 
       $("#RadarChart").on('click', function() {
+        resetCanvas();
          dtgraph(res);
       });
       $("#PieChart").on('click', function() {
-         pieChartgraph(res);
+        resetCanvas();
+        pieChartgraph(res);
       });
 
       // dtgraph(res);
@@ -73,7 +77,11 @@ $('#monthsrch').on('click', function(e) {
     })
 })
 });
-/////Build route to search by day//////
+/////erasing canvas to reset/////
+function resetCanvas(){
+  $('#DisplayChart').remove(); // this is my <canvas> element
+  $('#canvashld').append('<canvas id="DisplayChart"><canvas>');
+};
 
 
 
