@@ -51,6 +51,14 @@ left: 900px;
   color: dimgrey;
 }
 
+.DisplayChartCss{
+  height: 500px !important;
+  width: 500px !important;
+}
+.DisplayChartCssLinebar {
+  height: 500px !important;
+  width: 800px !important;  
+}
 /* #myChart{
   float:right;
 } */

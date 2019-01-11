@@ -54,13 +54,16 @@ $('#monthsrch').on('click', function(e) {
       graphChart(res);
 
       $("#barChart").on('click', function() {
-          resetCanvas();
-          pieChartgraph(res);
+          // resetCanvas();
+          $('#DisplayChart').remove(); // this is my <canvas> element
+          $('#canvashld').append('<canvas id="DisplayChart" class="DisplayChartCssLinebar"><canvas>');
+          graphChart(res);
 
     });
 
       $("#RadarChart").on('click', function() {
         resetCanvas();
+
          dtgraph(res);
       });
       $("#PieChart").on('click', function() {
@@ -80,7 +83,8 @@ $('#monthsrch').on('click', function(e) {
 /////erasing canvas to reset/////
 function resetCanvas(){
   $('#DisplayChart').remove(); // this is my <canvas> element
-  $('#canvashld').append('<canvas id="DisplayChart" width="500px height="500px"><canvas>');
+  $('#canvashld').append('<canvas id="DisplayChart" class="DisplayChartCss"><canvas>');
+
 };
 
 
@@ -122,20 +126,26 @@ function graphChart(res) {
         labels: timeArr,
         datasets: [{
             label: "Ground Wind Chart",
-            backgroundColor: 'rgb(47,160,110)',
+            // backgroundColor: 'rgb(47,160,110)',
             borderColor: 'rgb(70,90,172)',
+            backgroundColor:"rgb(241,29,29,0.7)",
+            yAxisID:"winds",
             data: grdArr,
           },
           {
             label: "Winds Aloft",
-            backgroundColor: "#999",
+            backgroundColor: "rgb(99,192,99,0.7)",
             borderColor: "skyblue",
+            yAxisID:"winds",
+
+            // id:"y-axis-2",
             data: windArr,
           },
           {
             label: "Tether Tension",
-            backgroundColor: "#999",
+            backgroundColor: "rgb(153,153,153,0.7)",
             borderColor: "green",
+            yAxisID:"tension",
             data: tnArr,
 
           }
@@ -144,8 +154,27 @@ function graphChart(res) {
 
       // Configuration options go here
       options: {
+        events: ["click"],
          maintainAspectRatio: false,
          responsive: false,
+         scales: {
+            yAxes: [{
+                      type: 'linear',
+                      position: "left",
+                      id: "winds",
+                      ticks: {
+                            min: 0,
+                            max: 50
+                        // stepSize: 1
+                            }
+                      },
+                      {
+                      type: 'linear',
+                      position: "right",
+                      id:"tension"
+                    }
+                  ]
+                }
       }
     });
 
