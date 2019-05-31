@@ -8,10 +8,87 @@
 </head>
 
 <body>
-  <h1 style="text-align:center;">Test Chart</h1>
+  <h1 style="text-align:center;">Case Status</h1>
+
+  <div class="container-fluid">
+  <h1>Daily Report</h1>
+  <form id="StatusForm">
+    <input type="text" name="loggedby" value="Enter Name">
+    <br>
+    <br>
+    <div class="form-row">
+    Site 1
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site1Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S1Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    Site 2
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site2Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S2Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    Site 3
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site3Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S3Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    </div>
+
+    <div class="form-row">
+    Site 4
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site4Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S4Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    Site 5
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site5Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S5Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    Site 6
+    <div class="form-group col-md-3">
+    <select class="form-control" id="Site6Status">
+                                      <option>FMC</option>
+                                      <option>NMC</option>
+                                      <option>PMC</option>
+    </select>
+    <br>
+    <textarea class="form-control" id="S6Notes" placeholder="Notes" rows="3"></textarea>
+    </div>
+    </div>
+
+    <button id="saveReport">Save Report</button>
+
+  </form>
+</div>
 
 
-  <div>
+  <!-- <div>
     <a style='text-align:center;' href="/upload"><button type="button" id="upl-btn"><p><span></span>upload sitrep</p></button></a>
   </div>
 
@@ -37,7 +114,7 @@
     </div>
     <div>
       <canvas id="RadarChart" width="300" height="300"></canvas>
-    </div>
+    </div> -->
 
 
 

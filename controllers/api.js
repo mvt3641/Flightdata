@@ -2,42 +2,62 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var flight = require('../models/flightmodel');
+var StatusRec = require("../models/statusmodel");
 //requring the mongodb database connection
-var connection = require('../config/connection');
+var db = require('../config/connection');
 
 mongoose.Promise = Promise;
 //creating a router for export to handle middleware and routing
 var router = express.Router();
 
-//get all data from the db table
-router.post('/flightdata', function(req, res) {
+//Save record to db
+router.post('/statusdata', function(req, res) {
+  var url = "mongodb://localhost:27017/DailySitrep"
+  var data = req.body;
+  var DailyStatus = new StatusRec(data);
+   mongoose.connect(url, (err, db) => {
+   if (err) throw err;
+   DailyStatus.save(function(err,StatusRec){
+     if (err) throw err;
+     console.log(StatusRec);
+   })
+// Return object to client
+    res.json(data);
+  });
+});
+    //Since this in an uploaded file, sort by _id of upload
+    // flight.find(searchmon).sort({
+    //   "_id": 1
+    // }).exec(function(err, results) {
+    //   if (err) throw err;
+    //   res.json(results)
+    //   console.log(`${results.length}  files returned on query`)
+    //
+    // });
+
+
+
+
+//Api test route//
+//Getting all records
+router.get('/allflightdata', function(req, res) {
   var uri = "mongodb://localhost:27017/flightdataSPARC"
   mongoose.connect(uri, function(error) {
-    var searchmon = req.body;
-    // var searchdat = req.body.day_srch;
-    console.log(searchmon);
-    // console.log(searchdat);
+    var alldata = req.body;
+    console.log(alldata);
 
     //Since this in an uploaded file, sort by _id of upload
-    flight.find(searchmon).sort({
+    flight.find().sort({
       "_id": 1
     }).exec(function(err, results) {
       if (err) throw err;
-      res.json(results)
+      console.log(results);
+      res.json(results);
       console.log(`${results.length}  files returned on query`)
 
     });
 
   })
-});
-
-//Api test route//
-//Route for getting ground winds
-router.get('/api/flightdata/chart', function(req, res) {
-  // db.query('SELECT GROUND_,TIME,Date,Winds_Aloft,TENSION FROM asitrep;',function(err,results){
-  //   if(err) throw err;
-  //   res.json(results);
-  // })
 });
 
 
